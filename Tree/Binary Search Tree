@@ -1,0 +1,91 @@
+/*Q: 1.	Write a program to insert an element in a Binary search tree;
+ if the element is already inserted before then display the location.
+*/
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int table_size = 9;
+int tree[200] = {NULL};
+
+int insert_tree(int value)
+{
+    int parent =0;
+    int p;
+
+    while(1)
+    {
+        if(value==tree[parent])
+        {
+            cout<<"The number "<<value<<" has found at the position "<<parent+1<<endl;
+            return parent;
+        }
+        else if(value<tree[parent])
+        {
+            p = parent*2+1;
+            if(tree[p]==NULL)
+            {
+                tree[p] = value;
+                return p;
+            }
+            else
+            {
+                parent = p;
+            }
+
+        }
+        else if(value>tree[parent])
+        {
+            p = parent*2+2;
+            if(tree[p]==NULL)
+            {
+                tree[p] = value;
+                return p;
+            }
+            else
+            {
+                parent = p;
+                continue;
+            }
+
+
+            tree[parent*2] = value;
+        }
+
+    }
+}
+int main()
+{
+
+    int n;
+
+    int p = 0;
+    for(int i=0; i<table_size; i++)
+    {
+        cin>>n;
+
+        if(tree[0]==NULL)
+        {
+            // cout<<"The number "<<n<<" loction 1 where the number should be inserted"<<endl;
+            tree[0] = n;
+        }
+
+        else
+        {
+            p = insert_tree(n);
+        }
+    }
+
+    int k = pow(2,5);
+    int m = sizeof(tree)/sizeof(tree[0]);
+    for(int i=0; i<m; i++)
+    {
+        if(tree[i]!=NULL)
+        {
+            cout<<tree[i]<<" ";
+        }
+    }
+
+}
